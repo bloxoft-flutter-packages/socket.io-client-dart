@@ -127,7 +127,11 @@ abstract class Transport extends EventEmitter {
          (opts["secure"] != true && port != 80))) {
       return ":$port";
     }
-    return "";
+    if(opts["secure"] == true) {
+      return ":443";
+    } else {
+      return ":80"; 
+    }
   }
 
   String _query(Map<String, dynamic> query) {
