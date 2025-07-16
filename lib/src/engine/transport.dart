@@ -118,15 +118,15 @@ abstract class Transport extends EventEmitter {
   }
 
   String _port() {
-    final port = opts["port"];
-    if (port != null &&
-        ((opts["secure"] == true && port != 443) ||
-            (opts["secure"] != true && port != 80))) {
-      return ":$port";
-    } else {
-      return "";
-    }
+  final port = opts["port"];
+  if (port != null &&
+      port != 0 && port != '0' && // <-- PATCH: prevent :0
+      ((opts["secure"] == true && port != 443) ||
+       (opts["secure"] != true && port != 80))) {
+    return ":$port";
   }
+  return "";
+}
 
   String _query(Map<String, dynamic> query) {
     Map<String, String> result = {};
