@@ -119,8 +119,6 @@ abstract class Transport extends EventEmitter {
 
   String _port() {
     final port = opts["port"];
-    print('websocket port:');
-    print(port);
     if (port != null &&
         port != 0 && port != '0' && // <-- PATCH: prevent :0 port
         ((opts["secure"] == true && port != 443) ||
